@@ -80,6 +80,6 @@ Email: daariqmaxamuud65@gmail.com
 Phone: +252 61 897 55 64
 
 Location: Mogadishu, Somalia
-
+<img src="https://t.bkit.co/w_68a61e339e33e.gif" />
 
 
