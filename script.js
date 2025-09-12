@@ -145,3 +145,41 @@
         document.querySelectorAll('section').forEach(section => {
             observer.observe(section);
         });
+// ========================================================================= //
+// ========================= EMAILJS CONTACT FORM ========================== //
+// ========================================================================= //
+
+(function() {
+    // Initialize EmailJS with your Public Key
+    emailjs.init({
+      publicKey: "6GaDuMSGBMVLClcdQ", // PASTE YOUR PUBLIC KEY HERE
+    });
+})();
+
+window.addEventListener('load', function() {
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevents the default form submission
+
+            const serviceID = 'service_cirnje9'; // PASTE YOUR SERVICE ID HERE
+            const templateID = 'template_7qqcgmn'; // PASTE YOUR TEMPLATE ID HERE
+            const status = document.getElementById('status');
+
+            status.innerText = 'Sending...';
+            status.style.color = '#0ef'; // Optional: style the text
+
+            // Send the form data using EmailJS
+            emailjs.sendForm(serviceID, templateID, this)
+                .then(() => {
+                    status.innerText = 'Message sent successfully!';
+                    setTimeout(() => { status.innerText = '' }, 5000); // Message disappears after 5 seconds
+                    document.getElementById('contact-form').reset(); // Clear the form
+                }, (err) => {
+                    status.innerText = 'Failed to send. Please try again.';
+                    status.style.color = 'red';
+                    console.error('EmailJS Error:', JSON.stringify(err));
+                });
+        });
+    }
+});
